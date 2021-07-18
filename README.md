@@ -4,6 +4,8 @@
 
 This work tries to open a new window for image processing by focusing on a more abstract concept than the pixel, and this concept is the shape, a set of cubic [Bézier curves](https://en.wikipedia.org/wiki/B%C3%A9zier_curve) (like on an [SVG](https://en.wikipedia.org/wiki/Scalable_Vector_Graphics) file).
 
+![Cubic bézier curve](/images/bézier-curve.png?raw=true "Cubic bézier curve")
+
 Over the years, most image processing works focused on pixels as the smallest building blocks and built extraordinary capabilities using this concept (classification, segmentation, etc.).
 
 Despitethe outstanding achievements, this attitude has many flaws that some of them, I believe, can be overcome by using a more abstract concept like shapes.
@@ -40,6 +42,8 @@ I followed these steps to extract the shapes from the images:
 - I used [cv2 findContours](https://docs.opencv.org/4.5.2/d3/dc0/group__imgproc__shape.html#gadf1ad6a0b82947fa1fe3c3d497f260e0) with [CHAIN\_APPROX\_TC89\_L1](https://docs.opencv.org/3.4/d3/dc0/group__imgproc__shape.html#ga4303f45752694956374734a03c54d5ff) algorithm to create simple straight lines over the objects ([Python code](https://github.com/YossiAsher/abstract-learning-in-image-processing/blob/main/pre_processing.ipynb))
 - I used path-simplification from [paperjs](http://paperjs.org/examples/path-simplification/) to create [Bézier curves](https://en.wikipedia.org/wiki/B%C3%A9zier_curve) from the contours and reduced the complexity of the lines ([JS code](https://github.com/YossiAsher/abstract-learning-in-image-processing/tree/main/path-simplification)).
 
+![Extracting the shapes](/images/extracting-the-shapes.png?raw=true "Extracting the shapes")
+
 ### Representing the shapes
 
 Now I have SVG files that contain a set of Bézier curves, and each curve contains:
@@ -62,6 +66,8 @@ I builtthe model based on the [Vision Transformer (ViT)](https://keras.io/exampl
 
 In this stage, we have the exact vector sizes. The remaining layers of both models are the same.
 
+![Vision transformer](/images/vision-transformer.png?raw=true "Vision transformer")
+
 ### Training unsupervised task
 
 Learning from Bézier curves is a little bit complicated. One option to deal with this complication is to train part of the network with an unsupervised task. This task should help the network &quot;understand&quot; the Bézier curves world in general, unrelated to any specific task. The task that I chose was to draw a random line in addition to the original SVG file and classify if the new line intersects the object (any of the curves) in the SVG file or not.
@@ -69,6 +75,8 @@ Learning from Bézier curves is a little bit complicated. One option to deal wit
 I use [svgpathtools](https://github.com/mathandy/svgpathtools) to determine if there is an intersection between the line and the object.
 
 In addition, I knew that the dataset is relatively small (~3200 images, ~50 classes), so I used the unsupervised task to prevent overfitting.
+
+![Intersect](/images/intersect.png?raw=true "Intersect")
 
 ### Training supervised task
 
