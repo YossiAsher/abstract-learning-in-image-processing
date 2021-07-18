@@ -4,7 +4,7 @@
 
 This work tries to open a new window for image processing by focusing on a more abstract concept than the pixel, and this concept is the shape, a set of cubic [Bézier curves](https://en.wikipedia.org/wiki/B%C3%A9zier_curve) (like on an [SVG](https://en.wikipedia.org/wiki/Scalable_Vector_Graphics) file).
 
-![Cubic bézier curve](/images/bézier-curve.png?raw=true "Cubic bézier curve")
+![Cubic bézier curve](/images/bezier-curve.png?raw=true "Cubic bézier curve")
 
 Over the years, most image processing works focused on pixels as the smallest building blocks and built extraordinary capabilities using this concept (classification, segmentation, etc.).
 
