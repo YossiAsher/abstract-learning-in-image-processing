@@ -59,7 +59,7 @@ I followed these steps to create an input to my model:
 
 ### Building the model
 
-I builtthe model based on the [Vision Transformer (ViT)](https://keras.io/examples/vision/image_classification_with_vision_transformer/) model. However, there are two main differences between them:
+I built the model based on the [Vision Transformer (ViT)](https://arxiv.org/abs/2010.11929) model with this [example](https://keras.io/examples/vision/image_classification_with_vision_transformer/). However, there are two main differences between them:
 
 - ViT&#39;s model uses patches. I used my representation of Bézier curves.
 - ViT&#39;s model encodes each patch with a dense layer. I calculated the embedding for each of the four integers separately and concatenated the values to one vector.
@@ -88,9 +88,9 @@ I trained this updated model as a classification task.
 
 I compared my results with baseline models over the same dataset and task (the supervised). The accuracy results were (I trained the models without any hyperparameters optimization):
 
-- ResNet50 fine-tune (based on [this](https://www.tensorflow.org/tutorials/images/transfer_learning)) **99%** ([notebook](https://github.com/YossiAsher/abstract-learning-in-image-processing/blob/main/png_resnet50.ipynb))
-- Vision Transformer (ViT) train from scratch 90% ([notebook](https://github.com/YossiAsher/abstract-learning-in-image-processing/blob/main/png_attention.ipynb))
-- Learning from a set of Bézier curves (my model) ~65% ([notebook](https://github.com/YossiAsher/abstract-learning-in-image-processing/blob/main/svg_attention.ipynb))
+- ResNet50 fine-tune (based on [this](https://www.tensorflow.org/tutorials/images/transfer_learning)) **99%** ([notebook](/notebooks/png_resnet50.ipynb))
+- Vision Transformer (ViT) train from scratch 90% ([notebook](/notebooks/png_attention.ipynb))
+- Learning from a set of Bézier curves (my model) ~65% ([notebook](/notebooks/svg_attention.ipynb))
 
 The significant result is that it is possible to learn based on a higher abstraction like shapes and not just pixels. Perhaps in the future, we can even extend it to more domains like digital signal processing. Although my result does not beat the state-of-the-art methods, it is just the first attempt, and I believe this method will soon overcome them.
 
