@@ -37,8 +37,8 @@ function myFunc(file, output_path) {
                             var copy = element.copyTo(newProject);
                         }
                     });
-                if(out_total_len < max_path_size){
-                    var svg = newProject.exportSVG({ asString: true});
+                if(out_total_len > 0 && out_total_len < max_path_size){
+                    var svg = newProject.exportSVG({ asString: true, bounds: 'content',},);
                     fs.writeFile(path.resolve(new_path), svg, function (err) {
                         if (err) throw err;
                         console.log('Saved!', new_path);
